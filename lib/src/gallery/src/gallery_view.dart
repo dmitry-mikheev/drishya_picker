@@ -284,37 +284,35 @@ class _ViewState extends State<_View> with SingleTickerProviderStateMixin {
               Column(
                 children: [
                   // Header space
-                  if (panelSetting.allowDragToOpen)
-                    Builder(
-                      builder: (context) {
-                        // Header space for full screen mode
-                        if (_controller.fullScreenMode) {
-                          return SizedBox(height: panelSetting.headerMaxHeight);
-                        }
+                  // Builder(
+                  //   builder: (context) {
+                  //     // Header space for full screen mode
+                  //     if (_controller.fullScreenMode) {
+                  //       return SizedBox(height: panelSetting.headerMaxHeight);
+                  //     }
 
-                        // Toogling size for header hiding animation
-                        return ValueListenableBuilder<PanelValue>(
-                          valueListenable: _panelController,
-                          builder: (context, value, child) {
-                            final height = (panelSetting.headerMaxHeight * value.factor * 1.2).clamp(
-                              panelSetting.thumbHandlerHeight,
-                              panelSetting.headerMaxHeight,
-                            );
-                            return SizedBox(height: height);
-                          },
-                        );
-                      },
-                    ),
+                  //     // Toogling size for header hiding animation
+                  //     return ValueListenableBuilder<PanelValue>(
+                  //       valueListenable: _panelController,
+                  //       builder: (context, value, child) {
+                  //         final height = (panelSetting.headerMaxHeight * value.factor * 1.2).clamp(
+                  //           panelSetting.thumbHandlerHeight,
+                  //           panelSetting.headerMaxHeight,
+                  //         );
+                  //         return SizedBox(height: height);
+                  //       },
+                  //     );
+                  //   },
+                  // ),
 
-                  // Divider
-                  if (panelSetting.allowDragToOpen)
-                    Divider(
-                      color: Colors.lightBlue.shade300,
-                      thickness: 0.5,
-                      height: 0.5,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
+                  // // Divider
+                  // Divider(
+                  //   color: Colors.lightBlue.shade300,
+                  //   thickness: 0.5,
+                  //   height: 0.5,
+                  //   indent: 0,
+                  //   endIndent: 0,
+                  // ),
 
                   // Gallery grid
                   Expanded(

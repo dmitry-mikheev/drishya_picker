@@ -40,13 +40,10 @@ class PanelSetting {
     this.foregroundColor = Colors.black,
     this.backgroundColor = Colors.black,
     this.overlayStyle = SystemUiOverlayStyle.light,
-    this.allowDragToOpen = true,
   }) : assert(
           snapingPoint >= 0.0 && snapingPoint <= 1.0,
           '[snapingPoint] value must be between 1.0 and 0.0',
         );
-
-  final bool allowDragToOpen;
 
   /// Margin for panel top. Which can be used to show status bar if you need
   /// to show panel above scaffold.

@@ -84,10 +84,7 @@ class _CollapsableGalleryState extends State<CollapsableGallery> {
                     padding: const EdgeInsets.all(8.0),
                     child: CameraViewField(
                       editorSetting: EditorSetting(
-                        colors: _defaultBackgrounds
-                            .map((e) => e.colors!)
-                            .expand((e) => e)
-                            .toList(),
+                        colors: _defaultBackgrounds.map((e) => e.colors!).expand((e) => e).toList(),
                         stickers: _stickers1,
                       ),
                       photoEditorSetting: EditorSetting(
@@ -116,15 +113,11 @@ class _CollapsableGalleryState extends State<CollapsableGallery> {
                         ),
                         onChanged: (entity, remove) {
                           final entities = _notifier.value.entities.toList();
-                          remove
-                              ? entities.remove(entity)
-                              : entities.add(entity);
-                          _notifier.value =
-                              _notifier.value.copyWith(entities: entities);
+                          remove ? entities.remove(entity) : entities.add(entity);
+                          _notifier.value = _notifier.value.copyWith(entities: entities);
                         },
                         onSubmitted: (list) {
-                          _notifier.value =
-                              _notifier.value.copyWith(entities: list);
+                          _notifier.value = _notifier.value.copyWith(entities: list);
                         },
                         child: child,
                       );
@@ -277,8 +270,7 @@ const _arts = {
   ),
   ImageSticker(
     name: 'Multiple circles',
-    path:
-        'https://static.vecteezy.com/system/resources/previews/001/192/216/original/circle-png.png',
+    path: 'https://static.vecteezy.com/system/resources/previews/001/192/216/original/circle-png.png',
   ),
   ImageSticker(
     name: 'Eagle Wings',
@@ -286,31 +278,26 @@ const _arts = {
   ),
   ImageSticker(
     name: 'Hair',
-    path:
-        'https://cdn.statically.io/img/kreditings.com/wp-content/uploads/2020/09/hair-png.png?quality=100&f=auto',
+    path: 'https://cdn.statically.io/img/kreditings.com/wp-content/uploads/2020/09/hair-png.png?quality=100&f=auto',
   ),
   ImageSticker(
     name: 'Cloud',
-    path:
-        'https://i.pinimg.com/originals/19/8d/ae/198daeda14097d45e417e62ff283f10e.png',
+    path: 'https://i.pinimg.com/originals/19/8d/ae/198daeda14097d45e417e62ff283f10e.png',
   ),
   ImageSticker(
     name: 'Abstract art',
-    path:
-        'https://freepngimg.com/download/graphic/53280-2-abstract-art-hd-free-png-hq.png',
+    path: 'https://freepngimg.com/download/graphic/53280-2-abstract-art-hd-free-png-hq.png',
   ),
   ImageSticker(
     name: 'Hair',
-    path:
-        'https://i.pinimg.com/originals/df/8b/f1/df8bf1a18047ff20d3f82e0f47dbe683.png',
+    path: 'https://i.pinimg.com/originals/df/8b/f1/df8bf1a18047ff20d3f82e0f47dbe683.png',
   ),
   ImageSticker(
     path: 'https://freepngimg.com/thumb/hair/21-women-hair-png-image-thumb.png',
   ),
   ImageSticker(
     name: 'Paint splatter',
-    path:
-        'https://pngimage.net/wp-content/uploads/2018/06/paint-splatter-png-6.png',
+    path: 'https://pngimage.net/wp-content/uploads/2018/06/paint-splatter-png-6.png',
   ),
   ImageSticker(
     name: 'Hair',
@@ -322,13 +309,11 @@ const _arts = {
   ),
   ImageSticker(
     name: 'Eagle',
-    path:
-        'https://www.pngkey.com/png/full/0-9646_american-eagle-logo-png-eagle-holding-lombardi-trophy.png',
+    path: 'https://www.pngkey.com/png/full/0-9646_american-eagle-logo-png-eagle-holding-lombardi-trophy.png',
   ),
   ImageSticker(
     name: 'Hair',
-    path:
-        'https://i.dlpng.com/static/png/1357097-cb-hair-png-hair-png-521_500_preview.png',
+    path: 'https://i.dlpng.com/static/png/1357097-cb-hair-png-hair-png-521_500_preview.png',
   ),
   ImageSticker(
     name: 'Art',
@@ -336,13 +321,11 @@ const _arts = {
   ),
   ImageSticker(
     name: 'Bird',
-    path:
-        'https://storage.needpix.com/rsynced_images/no-background-2997564_1280.png',
+    path: 'https://storage.needpix.com/rsynced_images/no-background-2997564_1280.png',
   ),
   ImageSticker(
     name: 'Eagle',
-    path:
-        'https://cdn.pixabay.com/photo/2017/12/13/23/27/no-background-3017971_1280.png',
+    path: 'https://cdn.pixabay.com/photo/2017/12/13/23/27/no-background-3017971_1280.png',
   ),
 };
 
