@@ -20,8 +20,7 @@ class GalleryPermissionView extends StatefulWidget {
   State<GalleryPermissionView> createState() => _GalleryPermissionViewState();
 }
 
-class _GalleryPermissionViewState extends State<GalleryPermissionView>
-    with WidgetsBindingObserver {
+class _GalleryPermissionViewState extends State<GalleryPermissionView> with WidgetsBindingObserver {
   var _setting = false;
 
   @override
@@ -52,8 +51,7 @@ class _GalleryPermissionViewState extends State<GalleryPermissionView>
 
     return Container(
       padding: const EdgeInsets.all(24),
-      margin:
-          widget.isCamera ? const EdgeInsets.symmetric(horizontal: 32) : null,
+      margin: widget.isCamera ? const EdgeInsets.symmetric(horizontal: 32) : null,
       decoration: BoxDecoration(
         borderRadius: widget.isCamera ? BorderRadius.circular(12) : null,
         color: Colors.white,
@@ -75,7 +73,7 @@ class _GalleryPermissionViewState extends State<GalleryPermissionView>
 
           // Description
           Text(
-            '''Allow Drishya picker to access your ${widget.isCamera ? 'camera and microphone' : 'album for picking media'} .''',
+            '''Allow picker to access your ${widget.isCamera ? 'camera and microphone' : 'album for picking media'} .''',
             textAlign: TextAlign.center,
           ),
 

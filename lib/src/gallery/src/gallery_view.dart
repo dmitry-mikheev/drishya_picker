@@ -36,7 +36,6 @@ class GalleryView extends StatefulWidget {
   /// Pick media
   static Future<List<DrishyaEntity>?> pick(
     BuildContext context, {
-
     /// Gallery controller
     GalleryController? controller,
 
@@ -90,8 +89,7 @@ class _GalleryViewState extends State<GalleryView> {
       setting: widget.setting?.panelSetting,
       builder: (panelSetting) => _View(
         controller: _controller,
-        setting: (widget.setting ?? _controller.setting)
-            .copyWith(panelSetting: panelSetting),
+        setting: (widget.setting ?? _controller.setting).copyWith(panelSetting: panelSetting),
       ),
     );
 
@@ -260,8 +258,7 @@ class _ViewState extends State<_View> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final panelSetting = widget.setting.panelSetting!;
-    final actionMode =
-        _controller.setting.selectionMode == SelectionMode.actionBased;
+    final actionMode = _controller.setting.selectionMode == SelectionMode.actionBased;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: panelSetting.overlayStyle,
@@ -287,39 +284,37 @@ class _ViewState extends State<_View> with SingleTickerProviderStateMixin {
               Column(
                 children: [
                   // Header space
-                  Builder(
-                    builder: (context) {
-                      // Header space for full screen mode
-                      if (_controller.fullScreenMode) {
-                        return SizedBox(height: panelSetting.headerMaxHeight);
-                      }
+                  if (panelSetting.allowDragToOpen)
+                    Builder(
+                      builder: (context) {
+                        // Header space for full screen mode
+                        if (_controller.fullScreenMode) {
+                          return SizedBox(height: panelSetting.headerMaxHeight);
+                        }
 
-                      // Toogling size for header hiding animation
-                      return ValueListenableBuilder<PanelValue>(
-                        valueListenable: _panelController,
-                        builder: (context, value, child) {
-                          final height = (panelSetting.headerMaxHeight *
-                                  value.factor *
-                                  1.2)
-                              .clamp(
-                            panelSetting.thumbHandlerHeight,
-                            panelSetting.headerMaxHeight,
-                          );
-                          return SizedBox(height: height);
-                        },
-                      );
-//
-                    },
-                  ),
+                        // Toogling size for header hiding animation
+                        return ValueListenableBuilder<PanelValue>(
+                          valueListenable: _panelController,
+                          builder: (context, value, child) {
+                            final height = (panelSetting.headerMaxHeight * value.factor * 1.2).clamp(
+                              panelSetting.thumbHandlerHeight,
+                              panelSetting.headerMaxHeight,
+                            );
+                            return SizedBox(height: height);
+                          },
+                        );
+                      },
+                    ),
 
                   // Divider
-                  Divider(
-                    color: Colors.lightBlue.shade300,
-                    thickness: 0.5,
-                    height: 0.5,
-                    indent: 0,
-                    endIndent: 0,
-                  ),
+                  if (panelSetting.allowDragToOpen)
+                    Divider(
+                      color: Colors.lightBlue.shade300,
+                      thickness: 0.5,
+                      height: 0.5,
+                      indent: 0,
+                      endIndent: 0,
+                    ),
 
                   // Gallery grid
                   Expanded(
@@ -352,8 +347,7 @@ class _ViewState extends State<_View> with SingleTickerProviderStateMixin {
                 animation: _animation,
                 builder: (context, child) {
                   final offsetY = panelSetting.headerMaxHeight +
-                      (panelSetting.maxHeight! - panelSetting.headerMaxHeight) *
-                          (1 - _animation.value);
+                      (panelSetting.maxHeight! - panelSetting.headerMaxHeight) * (1 - _animation.value);
                   return Visibility(
                     visible: _animation.value > 0.0,
                     child: Transform.translate(

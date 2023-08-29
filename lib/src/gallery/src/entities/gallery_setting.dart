@@ -19,21 +19,20 @@ enum SelectionMode {
 class GallerySetting {
   ///
   /// Gallery setting
-  const GallerySetting({
-    this.selectedEntities = const [],
-    this.requestType = RequestType.all,
-    this.maximumCount = 50,
-    this.selectionMode = SelectionMode.countBased,
-    this.albumTitle = 'All Photos',
-    this.albumSubtitle = 'Select Media',
-    this.enableCamera = true,
-    this.crossAxisCount,
-    this.panelSetting,
-    this.editorSetting,
-    this.cameraSetting,
-    this.cameraTextEditorSetting,
-    this.cameraPhotoEditorSetting,
-  });
+  const GallerySetting(
+      {this.selectedEntities = const [],
+      this.requestType = RequestType.all,
+      this.maximumCount = 50,
+      this.selectionMode = SelectionMode.countBased,
+      this.albumTitle = 'All Photos',
+      this.albumSubtitle = 'Select Media',
+      this.enableCamera = true,
+      this.crossAxisCount,
+      this.panelSetting,
+      this.editorSetting,
+      this.cameraSetting,
+      this.cameraTextEditorSetting,
+      this.cameraPhotoEditorSetting});
 
   ///
   /// Previously selected entities
@@ -117,10 +116,8 @@ class GallerySetting {
       panelSetting: panelSetting ?? this.panelSetting,
       editorSetting: editorSetting ?? this.editorSetting,
       cameraSetting: cameraSetting ?? this.cameraSetting,
-      cameraTextEditorSetting:
-          cameraTextEditorSetting ?? this.cameraTextEditorSetting,
-      cameraPhotoEditorSetting:
-          cameraPhotoEditorSetting ?? this.cameraPhotoEditorSetting,
+      cameraTextEditorSetting: cameraTextEditorSetting ?? this.cameraTextEditorSetting,
+      cameraPhotoEditorSetting: cameraPhotoEditorSetting ?? this.cameraPhotoEditorSetting,
     );
   }
 
