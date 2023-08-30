@@ -22,8 +22,7 @@ class GalleryAssetSelector extends StatefulWidget {
 }
 
 ///
-class GalleryAssetSelectorState extends State<GalleryAssetSelector>
-    with TickerProviderStateMixin {
+class GalleryAssetSelectorState extends State<GalleryAssetSelector> with TickerProviderStateMixin {
   late AnimationController _editOpaController;
   late AnimationController _selectOpaController;
   late AnimationController _selectSizeController;
@@ -37,8 +36,7 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector>
     const duration = Duration(milliseconds: 300);
     _editOpaController = AnimationController(vsync: this, duration: duration);
     _selectOpaController = AnimationController(vsync: this, duration: duration);
-    _selectSizeController =
-        AnimationController(vsync: this, duration: duration);
+    _selectSizeController = AnimationController(vsync: this, duration: duration);
 
     // ignore: prefer_int_literals
     final tween = Tween(begin: 0.0, end: 1.0);
@@ -125,46 +123,41 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector>
               child: Stack(
                 children: [
                   // Edit button
-                  if (canEdit)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: AnimatedBuilder(
-                        animation: _editOpa,
-                        builder: (context, child) {
-                          final hide = (value.selectedEntities.isEmpty &&
-                                  !_editOpaController.isAnimating) ||
-                              _editOpa.value == 0.0;
-                          return hide
-                              ? const SizedBox()
-                              : Opacity(opacity: _editOpa.value, child: child);
-                        },
-                        child: SizedBox(
-                          width: buttonWidth,
-                          child: _TextButton(
-                            onPressed: (context) {
-                              final entity = value.selectedEntities.first;
-                              widget.controller
-                                  // ..select(context, entity)
-                                  .editEntity(context, entity)
-                                  .then((entity) {
-                                if (entity != null) {
-                                  widget.albums.currentAlbum.value
-                                      .insert(entity);
-                                  widget.controller
-                                      .select(context, entity, edited: true);
-                                }
-                              });
-                            },
-                            label: 'EDIT',
-                            background: Colors.white,
-                            labelColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
+                  // if (canEdit)
+                  //   Align(
+                  //     alignment: Alignment.centerLeft,
+                  //     child: AnimatedBuilder(
+                  //       animation: _editOpa,
+                  //       builder: (context, child) {
+                  //         final hide = (value.selectedEntities.isEmpty && !_editOpaController.isAnimating) ||
+                  //             _editOpa.value == 0.0;
+                  //         return hide ? const SizedBox() : Opacity(opacity: _editOpa.value, child: child);
+                  //       },
+                  //       child: SizedBox(
+                  //         width: buttonWidth,
+                  //         child: _TextButton(
+                  //           onPressed: (context) {
+                  //             final entity = value.selectedEntities.first;
+                  //             widget.controller
+                  //                 // ..select(context, entity)
+                  //                 .editEntity(context, entity)
+                  //                 .then((entity) {
+                  //               if (entity != null) {
+                  //                 widget.albums.currentAlbum.value.insert(entity);
+                  //                 widget.controller.select(context, entity, edited: true);
+                  //               }
+                  //             });
+                  //           },
+                  //           label: 'EDIT',
+                  //           background: Colors.white,
+                  //           labelColor: Colors.black,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
 
-                  // Margin
-                  if (canEdit) const SizedBox(width: 16),
+                  // // Margin
+                  // if (canEdit) const SizedBox(width: 16),
 
                   // Select
                   Align(
@@ -172,8 +165,7 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector>
                     child: AnimatedBuilder(
                       animation: _selectOpa,
                       builder: (context, child) {
-                        final hide = (value.selectedEntities.isEmpty &&
-                                !_selectOpaController.isAnimating) ||
+                        final hide = (value.selectedEntities.isEmpty && !_selectOpaController.isAnimating) ||
                             _selectOpa.value == 0.0;
 
                         return hide
@@ -187,16 +179,14 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector>
                         animation: _selectSize,
                         builder: (context, child) {
                           return SizedBox(
-                            width: !canEdit
-                                ? size.width
-                                : buttonWidth +
-                                    _selectSize.value * (buttonWidth + 20.0),
+                            width: !canEdit ? size.width : buttonWidth + _selectSize.value * (buttonWidth + 20.0),
                             child: child,
                           );
                         },
                         child: _TextButton(
                           onPressed: widget.controller.completeTask,
                           label: 'SELECT',
+                          background: const Color(0xFF0055FF),
                         ),
                       ),
                     ),
@@ -232,6 +222,7 @@ class _TextButton extends StatelessWidget {
     return TextButton(
       onPressed: () => onPressed?.call(context),
       style: TextButton.styleFrom(
+        side: const BorderSide(width: 1, color: Color(0xFF0055FF)),
         backgroundColor: background ?? Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -240,7 +231,7 @@ class _TextButton extends StatelessWidget {
       ),
       child: Text(
         label ?? '',
-        style: Theme.of(context).textTheme.button!.copyWith(
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
               color: labelColor ?? Theme.of(context).colorScheme.onPrimary,
             ),
       ),
