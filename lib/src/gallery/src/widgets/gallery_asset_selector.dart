@@ -112,6 +112,7 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector> with TickerP
         if (!emptyList) {
           canEdit = value.selectedEntities.first.type == AssetType.image;
         }
+        canEdit = false;
 
         return Column(
           children: [
@@ -123,41 +124,41 @@ class GalleryAssetSelectorState extends State<GalleryAssetSelector> with TickerP
               child: Stack(
                 children: [
                   // Edit button
-                  // if (canEdit)
-                  //   Align(
-                  //     alignment: Alignment.centerLeft,
-                  //     child: AnimatedBuilder(
-                  //       animation: _editOpa,
-                  //       builder: (context, child) {
-                  //         final hide = (value.selectedEntities.isEmpty && !_editOpaController.isAnimating) ||
-                  //             _editOpa.value == 0.0;
-                  //         return hide ? const SizedBox() : Opacity(opacity: _editOpa.value, child: child);
-                  //       },
-                  //       child: SizedBox(
-                  //         width: buttonWidth,
-                  //         child: _TextButton(
-                  //           onPressed: (context) {
-                  //             final entity = value.selectedEntities.first;
-                  //             widget.controller
-                  //                 // ..select(context, entity)
-                  //                 .editEntity(context, entity)
-                  //                 .then((entity) {
-                  //               if (entity != null) {
-                  //                 widget.albums.currentAlbum.value.insert(entity);
-                  //                 widget.controller.select(context, entity, edited: true);
-                  //               }
-                  //             });
-                  //           },
-                  //           label: 'EDIT',
-                  //           background: Colors.white,
-                  //           labelColor: Colors.black,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
+                  if (canEdit)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: AnimatedBuilder(
+                        animation: _editOpa,
+                        builder: (context, child) {
+                          final hide = (value.selectedEntities.isEmpty && !_editOpaController.isAnimating) ||
+                              _editOpa.value == 0.0;
+                          return hide ? const SizedBox() : Opacity(opacity: _editOpa.value, child: child);
+                        },
+                        child: SizedBox(
+                          width: buttonWidth,
+                          child: _TextButton(
+                            onPressed: (context) {
+                              final entity = value.selectedEntities.first;
+                              widget.controller
+                                  // ..select(context, entity)
+                                  .editEntity(context, entity)
+                                  .then((entity) {
+                                if (entity != null) {
+                                  widget.albums.currentAlbum.value.insert(entity);
+                                  widget.controller.select(context, entity, edited: true);
+                                }
+                              });
+                            },
+                            label: 'EDIT',
+                            background: Colors.white,
+                            labelColor: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
 
-                  // // Margin
-                  // if (canEdit) const SizedBox(width: 16),
+                  // Margin
+                  if (canEdit) const SizedBox(width: 16),
 
                   // Select
                   Align(
