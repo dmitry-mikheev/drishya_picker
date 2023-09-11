@@ -30,10 +30,10 @@ class GalleryController extends ValueNotifier<GalleryValue> {
   final ValueNotifier<bool> _albumVisibility;
 
   /// Panel setting
-  late PanelSetting _panelSetting;
+  late PanelSetting panelSetting;
 
   /// Panel setting
-  PanelSetting get panelSetting => _panelSetting;
+  //PanelSetting get panelSetting => _panelSetting;
 
   late GallerySetting _setting;
 
@@ -75,7 +75,7 @@ class GalleryController extends ValueNotifier<GalleryValue> {
   @internal
   void init({GallerySetting? setting}) {
     _setting = setting ?? const GallerySetting();
-    _panelSetting = _setting.panelSetting ?? const PanelSetting();
+    panelSetting = _setting.panelSetting ?? const PanelSetting();
     _editorSetting = _setting.editorSetting ?? const EditorSetting();
     _cameraSetting = _setting.cameraSetting ?? const CameraSetting();
     _cameraTextEditorSetting = _setting.cameraTextEditorSetting ?? _editorSetting;
