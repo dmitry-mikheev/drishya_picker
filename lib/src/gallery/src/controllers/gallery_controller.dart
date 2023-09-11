@@ -78,10 +78,8 @@ class GalleryController extends ValueNotifier<GalleryValue> {
     _panelSetting = _setting.panelSetting ?? const PanelSetting();
     _editorSetting = _setting.editorSetting ?? const EditorSetting();
     _cameraSetting = _setting.cameraSetting ?? const CameraSetting();
-    _cameraTextEditorSetting =
-        _setting.cameraTextEditorSetting ?? _editorSetting;
-    _cameraPhotoEditorSetting =
-        _setting.cameraPhotoEditorSetting ?? _editorSetting;
+    _cameraTextEditorSetting = _setting.cameraTextEditorSetting ?? _editorSetting;
+    _cameraPhotoEditorSetting = _setting.cameraPhotoEditorSetting ?? _editorSetting;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (_setting.selectedEntities.isNotEmpty) {
         _internal = true;
@@ -118,15 +116,6 @@ class GalleryController extends ValueNotifier<GalleryValue> {
     DrishyaEntity entity, {
     bool edited = false,
   }) {
-    // Check limit
-    if (reachedMaximumLimit) {
-      UIHandler.of(context).showSnackBar(
-        'Maximum selection limit of '
-        '${setting.maximumCount} has been reached!',
-      );
-      return;
-    }
-
     // Handle single selection mode
     if (singleSelection) {
       if (_setting.selectionMode == SelectionMode.actionBased) {
@@ -153,6 +142,15 @@ class GalleryController extends ValueNotifier<GalleryValue> {
       _internal = true;
       value = value.copyWith(selectedEntities: entities);
       return;
+    } else {
+      // Check limit
+      if (reachedMaximumLimit) {
+        UIHandler.of(context).showSnackBar(
+          'Maximum selection limit of '
+          '${setting.maximumCount} has been reached!',
+        );
+        return;
+      }
     }
 
     // Unselect previous item and continue if it was edited
@@ -262,8 +260,7 @@ class GalleryController extends ValueNotifier<GalleryValue> {
     // Dispose controller created inside [GalleryViewField]
     // onPressed which need to be disposed.
     _autoDispose = disposeOnFinish;
-    final entities =
-        await pick(context, setting: setting, routeSetting: routeSetting);
+    final entities = await pick(context, setting: setting, routeSetting: routeSetting);
     _onChanged = null;
     return entities;
   }
@@ -356,15 +353,12 @@ class GalleryController extends ValueNotifier<GalleryValue> {
 
   ///
   /// return true if selected media reached to maximum selection limit
-  bool get reachedMaximumLimit =>
-      value.selectedEntities.length == setting.maximumCount;
+  bool get reachedMaximumLimit => value.selectedEntities.length == setting.maximumCount;
 
   ///
   /// return true is gallery is in single selection mode
   bool get singleSelection =>
-      _setting.selectionMode == SelectionMode.actionBased
-          ? !value.enableMultiSelection
-          : setting.maximumCount == 1;
+      _setting.selectionMode == SelectionMode.actionBased ? !value.enableMultiSelection : setting.maximumCount == 1;
 
   ///
   /// Gallery view pannel controller
